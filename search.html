@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navStyle" style="background-color:white">
+        <a class="navbar-brand" href="index.html">
+          <img src="https://image.flaticon.com/icons/svg/167/167018.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+          Small Screen</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="index.html">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-item nav-link" href="search.html">Search</a>
+
+                <a class="nav-item nav-link" href="trending.html">Trending</a>
+                <a class="nav-item nav-link" href="random.html">Random</a>
+                <a class="nav-item nav-link" href="genre.html">Genre</a>
+
+            </div>
+
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+    
+ 
+       
+            <a id="logInButton" type="link"class="nav-item nav-link my-2 my-sm-0 " data-toggle="modal" data-target="#logInWindow">Log In</a>
+          
+            <div class="modal fade" id="logInWindow">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- header -->
+                  <div class="modal-header">
+                      <h3 align="center" class="modal-title">Login Form</h3>
+
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    
+                    
+                  </div>
+                  <!-- body -->
+                  <div class="modal-body">
+                    <form role="form">
+                      <div class="form-group form">
+                       
+
+                        <input id="loginEmail" class="form-control " placeholder="Email" />
+                        
+                        <input id="loginPassword" type="password" class="form-control " placeholder="Password" />
+                        <div class="loader loadingSpinner"></div>
+
+
+                      </div>
+                      
+                          <h5 class="text-danger"id="loginAlerts"></h5>
+                      
+                    </form>
+                  </div>
+                  <!-- footer -->
+                  <div class="modal-footer">
+                    <button id="loginSubmit" type = "submit" data-dismiss="modal" class="btn btn-primary btn-block">Log In</button>
+                    <h6>Create a New Account</h6>
+                    <button id ="signUpButton" type='button' class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-dismiss="modal" data-target="#signUpWindow">Sign Up</button>
+
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          
+        
+
+       
+
+                <!-- <button id ="signUpButton" type='button' class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#signUpWindow">Sign Up</button> -->
+              
+                <div class="modal fade" id="signUpWindow">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!-- header -->
+                      <div class="modal-header">
+                          <h3 class="modal-title" >Sign Up Form</h3>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        
+                      </div>
+                      <!-- body -->
+                      <div class="modal-header">
+                        <form role="form">
+                          <div class="form-group form">
+                            <h6>Email*</h6>
+                            <input id="signUpEmail" class="form-control" placeholder="Email" />
+                            <h6>Password*</h6>
+                            <input id="signUpPassword" class="form-control" type="password" placeholder="Password" />
+                            <h6>Confirm Password*</h6>
+                            <input id="checkSignUpPassword" class="form-control" type="password" placeholder="Password" />
+                            <h5 class="text-danger"id="signUpAlerts"></h5>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- footer -->
+                      <div class="modal-footer">
+                        <button id="signUp" class="btn btn-primary btn-block" data-dismiss="modal">Sign Up</button>
+                        <div class="loader loadingSpinner"></div>
+
+                        
+                      </div>
+              
+                    </div>
+                  </div>
+                </div>
+                <a id="signOut" class="nav-item nav-link my-2 my-sm-0 ">Log Out</a>
+
+              
+            </form>
+</nav>
+    </nav>
+    <div class="container">
+
+
+        <div class="row">
+
+            <div class="col-lg-2">
+                <div>
+                  <h3 id="userWatchlist" class="watchListStyle">WatchList</h3>
+                  <ul id="watchList"></ul>
+                </div>
+
+            </div>
+
+            <div id="mainContentContainer" class="col-lg-8 ">
+                <div class="card searchContentStyle">
+                    <h3 class = "mainContentHeader">Search</h3>
+                    <input id="tvShowSearchInput" class="mainContentHeader" type="text" placeholder="Enter a Show">
+                    <button id = "tvShowSearchSubmit" type = "submit">Submit</button>
+                    </div>
+                    <div id="altNavPosition" class="row altNavStyle">
+                        
+                    </div>
+                <div id="mainContent" class = "mainContentStyle float ">
+                  
+                </div>
+
+            </div>
+
+            <div class="col-lg-2"></div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <footer>Copyright </footer>
+
+
+    <script type="text/javascript" src="assets/home.js"></script>
+
+    <script type="text/javascript" src="assets/searchPage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+<!--    I3LIxn3wdbBKTNOyOvfS4UCk3TvTUwrY         onfocus="this.value=''"  onblur="this.value=''"    onload="createStartingAnimals()"          -->
+
+</html>
